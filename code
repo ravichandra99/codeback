@@ -1,0 +1,123 @@
+server {
+    root /home/ubuntu;
+    index index.php index.html index.htm;
+    server_name codegnan.com www.codegnan.com;
+    client_max_body_size 512M;
+    gzip on;
+gzip_vary on;
+gzip_min_length 10240;
+gzip_proxied expired no-cache no-store private auth;
+gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml;
+gzip_disable "MSIE [1-6]\.";
+    rewrite ^/react-js-training http://codegnan.com/react-js-certification-training-course permanent;
+    rewrite ^/machine-learning-online-course-certification-training-with-python http://codegnan.com/machine-learning-certification-training-with-python permanent;
+    rewrite ^/iot-training$ http://codegnan.com/iot-certification-training-course permanent;
+    rewrite ^/python-course-online-certification-training http://codegnan.com/python-for-data-science-training permanent;
+    rewrite ^/wp https://learnwp.codegnan.com/wordpress-bootcamp-with-oxygen-builder/ permanent;
+    location  /robots.txt {
+    root  /home/ubuntu;
+    }
+    location  /sitemap.xml{
+    root /home/ubuntu;
+    }
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/codelms;
+    }
+    location /media/ {
+        root /home/ubuntu/codelms;
+    }
+location /bootcamps {
+   rewrite ^/bootcamps$ https://$server_name/bootcamp permanent;
+ }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/codelms/toxi.sock;
+    }
+
+        location ^~ /webinars {
+        try_files $uri $uri/ /webinars/index.php$is_args$args;
+
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+    }
+        location ^~ /bootcamp {
+        try_files $uri $uri/ /bootcamp/index.php$is_args$args;
+
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+    }
+
+        location ^~ /sendy {
+        try_files $uri $uri/ /sendy/index.php$is_args$args;
+location /sendy/ {
+    try_files $uri $uri/ $uri.php?$args;
+}
+
+
+location /sendy/l/ {
+    rewrite ^/sendy/l/([a-zA-Z0-9/]+)$ /sendy/l.php?i=$1 last;
+}
+
+location /sendy/t/ {
+    rewrite ^/sendy/t/([a-zA-Z0-9/]+)$ /sendy/t.php?i=$1 last;
+}
+
+location /sendy/w/ {
+    rewrite ^/sendy/w/([a-zA-Z0-9/]+)$ /sendy/w.php?i=$1 last;
+}
+
+location /sendy/unsubscribe/ {
+    rewrite ^/sendy/unsubscribe/(.*)$ /sendy/unsubscribe.php?i=$1 last;
+}
+
+location /sendy/subscribe/ {
+    rewrite ^/sendy/subscribe/(.*)$ /sendy/subscribe.php?i=$1 last;
+}
+
+location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+    access_log off;
+    log_not_found off;
+}
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        }
+    }
+
+include snippets/phpmyadmin.conf;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/codegnan.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/codegnan.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    if ($host = www.codegnan.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = codegnan.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name codegnan.com www.codegnan.com;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}

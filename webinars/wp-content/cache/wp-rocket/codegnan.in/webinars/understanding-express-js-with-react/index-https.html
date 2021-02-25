@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8" />
+<link rel="canonical" href="https://codegnan.in/webinars/understanding-express-js-with-react/" /><meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="pingback" href="https://codegnan.in/webinars/xmlrpc.php" />
+
+	<script type="text/javascript">
+		document.documentElement.className = 'js';
+	</script>
+
+	<script>var et_site_url='https://codegnan.in/webinars';var et_post_id='223528';function et_core_page_resource_fallback(a,b){"undefined"===typeof b&&(b=a.sheet.cssRules&&0===a.sheet.cssRules.length);b&&(a.onerror=null,a.onload=null,a.href?a.href=et_site_url+"/?et_core_page_resource="+a.id+et_post_id:a.src&&(a.src=et_site_url+"/?et_core_page_resource="+a.id+et_post_id))}
+</script><title>Understanding Express JS With React | Codegnan</title><style id="rocket-critical-css">:root{--wp-admin-theme-color:#007cba;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-20:#005a87}.wpcf7 .screen-reader-response{position:absolute;overflow:hidden;clip:rect(1px,1px,1px,1px);height:1px;width:1px;margin:0;padding:0;border:0}.wpcf7 form .wpcf7-response-output{margin:2em 0.5em 1em;padding:0.2em 1em;border:2px solid #00a0d2}.wpcf7 form.init .wpcf7-response-output{display:none}.wpcf7-form-control-wrap{position:relative}.wpcf7 input[type="email"],.wpcf7 input[type="tel"]{direction:ltr}#footer-bottom{display:none}#main-footer{display:none}.menu-enroll-btn{background-color:#fd6d02;color:white;padding:10px;font-size:18px;font-family:'Lato',sans-serif;font-weight:600;border:2px solid white;border-radius:50px}@media only screen and (max-width:1325px) and (min-width:360px){#top-menu,nav#top-menu-nav{display:block!important}#et_mobile_nav_menu{display:none!important}}@media (max-width:767px){.xtra-txt-menu{display:none!important}#et-top-navigation{padding-left:120px!important}#top-menu li{padding-right:10px!important}.et_menu_container{width:90%!important}.menu-enroll-btn{padding:8px 12px 8px 12px!important}}.et_pb_slide_image{display:block!important}div.wpcf7 .wpcf7-form-control{max-width:95%}.wpcf7-form label{color:white!important}.wpcf7-form input{padding:10px;border-radius:8px}input.wpcf7-form-control.wpcf7-submit{font-size:18px;border-color:#FD6D02!important;background:#FD6D02;color:white;border-radius:50px}.wpcf7-response-output{border-color:white;color:white}</style><link rel="preload" href="https://fonts.googleapis.com/css?family=Open%20Sans%3A300italic%2C400italic%2C600italic%2C700italic%2C800italic%2C400%2C300%2C600%2C700%2C800%7CNunito%20Sans%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CNunito%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=latin%2Clatin-ext&#038;display=swap" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//fonts.googleapi.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Codegnan &raquo; Feed" href="https://codegnan.in/webinars/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Codegnan &raquo; Comments Feed" href="https://codegnan.in/webinars/comments/feed/" />
+<meta content="Codegnan Theme v.1.0.0" name="generator"/><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='preload'   href='https://codegnan.in/webinars/wp-includes/css/dist/block-library/style.min.css?ver=5.5.1' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" type='text/css' media='all' />
+<link rel='preload'   href='https://codegnan.in/webinars/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.2.2' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" type='text/css' media='all' />
+
+<link rel='preload'   href='https://codegnan.in/webinars/wp-content/themes/divi-child/style.css?ver=4.6.1' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" type='text/css' media='all' />
+
+<link rel='preload'   href='https://codegnan.in/webinars/wp-includes/css/dashicons.min.css?ver=5.5.1' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" type='text/css' media='all' />
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-content/themes/Divi/core/admin/js/es6-promise.auto.min.js?ver=5.5.1' id='es6-promise-js' defer></script>
+<script type='text/javascript' id='et-core-api-spam-recaptcha-js-extra'>
+/* <![CDATA[ */
+var et_core_api_spam_recaptcha = {"site_key":"","page_action":{"action":"understanding_express_js_with_react"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-content/themes/Divi/core/admin/js/recaptcha.js?ver=5.5.1' id='et-core-api-spam-recaptcha-js' defer></script>
+<link rel="https://api.w.org/" href="https://codegnan.in/webinars/wp-json/" /><link rel="alternate" type="application/json" href="https://codegnan.in/webinars/wp-json/wp/v2/pages/223528" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://codegnan.in/webinars/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://codegnan.in/webinars/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.5.1" />
+<link rel="canonical" href="https://codegnan.in/webinars/understanding-express-js-with-react/" />
+<link rel='shortlink' href='https://codegnan.in/webinars/?p=223528' />
+<script type='text/javascript' data-cfasync='false'>var _mmunch = {'front': false, 'page': false, 'post': false, 'category': false, 'author': false, 'search': false, 'attachment': false, 'tag': false};_mmunch['page'] = true; _mmunch['pageData'] = {"ID":223528,"post_name":"understanding-express-js-with-react","post_title":"Understanding Express JS With React","post_type":"page","post_author":"1","post_status":"publish"};</script><script data-cfasync="false" src="//a.mailmunch.co/app/v1/site.js" id="mailmunch-script" data-plugin="cc_mm" data-mailmunch-site-id="830807" async></script><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WBPLVJQ');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Logo link Starts here -->
+<script>
+jQuery(function($){
+    $('.logo_container a').attr('href','https://codegnan.com');
+});
+</script>
+<!-- Logo link Ends here --><link rel="icon" href="https://codegnan.in/webinars/wp-content/uploads/2020/07/footer-icon-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://codegnan.in/webinars/wp-content/uploads/2020/07/footer-icon.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://codegnan.in/webinars/wp-content/uploads/2020/07/footer-icon.png" />
+<meta name="msapplication-TileImage" content="https://codegnan.in/webinars/wp-content/uploads/2020/07/footer-icon.png" />
+<link rel="preload"  href="https://codegnan.in/webinars/wp-content/et-cache/223528/et-core-unified-223528-16001151219601.min.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="et_core_page_resource_fallback(this, true)" onload="et_core_page_resource_fallback(this)" /><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script>
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script></head>
+<body class="page-template-default page page-id-223528 et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_smooth_scroll et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css">
+	<div id="page-container">
+
+	
+	
+			<header id="main-header" data-height-onload="37">
+			<div class="container clearfix et_menu_container">
+							<div class="logo_container">
+					<span class="logo_helper"></span>
+					<a href="https://codegnan.in/webinars/">
+						<img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/logo-wp-cg.png" alt="Codegnan" id="logo" data-height-percentage="44" />
+					</a>
+				</div>
+							<div id="et-top-navigation" data-height="37" data-fixed-height="42">
+											<nav id="top-menu-nav">
+						<ul id="top-menu" class="nav"><li id="menu-item-222804" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-222804"><a href="https://codegnan.in/webinars"><button class="menu-enroll-btn" id="menu-enroll-button">Webinars<span class="xtra-txt-menu"></span></button></a></li>
+</ul>						</nav>
+					
+					
+					
+					
+					<div id="et_mobile_nav_menu">
+				<div class="mobile_nav closed">
+					<span class="select_page">Select Page</span>
+					<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
+				</div>
+			</div>				</div> <!-- #et-top-navigation -->
+			</div> <!-- .container -->
+			<div class="et_search_outer">
+				<div class="container et_search_form_container">
+					<form role="search" method="get" class="et-search-form" action="https://codegnan.in/webinars/">
+					<input type="search" class="et-search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />					</form>
+					<span class="et_close_search_field"></span>
+				</div>
+			</div>
+		</header> <!-- #main-header -->
+			<div id="et-main-area">
+	
+<div id="main-content">
+
+
+			
+				<article id="post-223528" class="post-223528 page type-page status-publish hentry">
+
+				
+					<div class="entry-content">
+					<div id="et-boc" class="et-boc">
+			
+		<div class="et-l et-l--post">
+			<div class="et_builder_inner_content et_pb_gutters3">
+		<div class="et_pb_section et_pb_section_0 et_pb_with_background et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_0">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h2 style="text-align: center;">Get Registered</h2></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_1">
+				<div class="et_pb_column et_pb_column_2_5 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><div class='mailmunch-forms-short-code mailmunch-forms-widget-948197' style='display: none !important;'></div></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_3_5 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_with_border et_pb_module et_pb_image et_pb_image_0">
+				
+				
+				<span class="et_pb_image_wrap "><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" title="Express JS With React" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React.jpg 590w, https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React-480x254.jpg 480w" data-lazy-sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 590px, 100vw" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React.jpg" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React.jpg" alt="" title="Express JS With React" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React.jpg 590w, https://codegnan.in/webinars/wp-content/uploads/2020/09/Express-JS-With-React-480x254.jpg 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 590px, 100vw" /></noscript></span>
+			</div>
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_1 et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_2">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_2  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h2><strong>What you&#8217;re going to learn?</strong></h2></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_3">
+				<div class="et_pb_column et_pb_column_1_2 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_3  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><ul>
+<li><span style="font-weight: 400;">What is ExpressJS?</span></li>
+<li>How do we use ExpressJS?</li>
+<li>How is  ExpressJS working as an interface between front-end and back-end?</li>
+<li>How do we connect ReactJs with ExpressJS?</li>
+</ul></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_5  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column_empty">
+				
+				
+				
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_2 et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_4">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_4  et_pb_text_align_center et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h3><b>What Our Students Say</b></h3></div>
+			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_slider et_pb_slider_0 et_pb_slider_fullwidth_off">
+				<div class="et_pb_slides">
+					<div class="et_pb_slide et_pb_slide_0 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center et-pb-active-slide" data-slide-id="et_pb_slide_0">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/001.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/001-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/001.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/001.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/001.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/001-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em><span>I got to know codegnan through online.I attended python course . The team helped me to overcome the problems I face while programing in python language. I learned much here so that I am pretty good with my core python.</span></em></p>
+<p><strong>Udanya Korupolu</strong><br /> <strong> Student, KL University</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_1 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_1">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/01.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/01-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/01.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/01.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/01.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/01-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em><span>Got to know about Codegnan through google and joined in it after going through their reviews.It been a very encouraging and postivie experience right from getting details,joining and completing my microsoft certification exam.The staff here is very helpful in every possible way especially sai ram sir has been really good in helping through out the course.i highly recommend Codegnan..</span></em></p>
+<p><strong>Sasanc Reddy</strong><br /> <strong> Employee, Mc Afee</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_2 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_2">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/Pri-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Came to know about Codegnan through web and the faculty was really good with practical knowledge on problems and projects</em></p>
+<p><strong>Priya Nagothi</strong><br /> <strong> Student, Vignan University</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_3 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_3">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/03.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/03-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/03.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/03.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/03.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/03-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>It was an wonderful training center.I have learnt a lot in Codegnan it solutions. thank you.</em></p>
+<p><strong>T.B.K. Parameswar</strong><br /> <strong> Student, Sri CSVMV College of Engineering</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_4 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_4">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/sri.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/sri-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/sri.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/sri.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/sri.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/sri-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Flexible timings ,friendly environment and good staff!! good initiative for programme beginners in various computer languages ,overall i love this experience.</em></p>
+<p><strong>Srikanth Marni</strong><br /> <strong> Student, Saveetha Engineering College</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_5 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_5">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/003.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/003-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/003.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/003.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/003.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/003-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>I have learned PYTHON course here.The teaching environment is very friendly here.they clear the doubts immediatly. I am very happy as i trained here and gained MTA badge.The best part is they focus on practical training.I suggest who are willing get train in python this is best place.</em></p>
+<p><strong>Sree Kavya Kondaveeti</strong><br /> <strong> Student, Bapatla Engineering College</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_6 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_6">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/02.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/02-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/02.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/02.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/02.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/02-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Those people who want learn python for data science and artifical intelligence,It is right place.For me it helps a lot.Faculty is very good and cooperative.</em></p>
+<p><strong>Satyam G</strong><br /> <strong> Student, Malla Reddy Engineering College</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_7 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_7">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/SAM-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Those people who want learn python for data science and artifical intelligence,It is right place.For me it helps a lot.Faculty is very good and cooperative.</em></p>
+<p><strong>Soumya Vema</strong><br /> <strong> Student, PB Siddhartha Arts and Science College</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_8 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_8">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/anil.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/anil-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/anil.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/anil.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/anil.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/anil-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Codegnan is a platform to improve your programming skills and I improved a lot of knowledge by completing python course @CODEGNAN.</em></p>
+<p><strong>Anil Pathi</strong><br /> <strong> Student, Andhra Loyola College</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			<div class="et_pb_slide et_pb_slide_9 et_pb_bg_layout_dark et_pb_slide_with_image et_pb_media_alignment_center" data-slide-id="et_pb_slide_9">
+				
+				
+				<div class="et_pb_container clearfix">
+					<div class="et_pb_slider_container_inner">
+						<div class="et_pb_slide_image"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/004.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/004-300x295.png 300w" data-lazy-sizes="(max-width: 396px) 100vw, 396px" data-lazy-src="https://codegnan.in/webinars/wp-content/uploads/2020/07/004.png" /><noscript><img src="https://codegnan.in/webinars/wp-content/uploads/2020/07/004.png" alt="" srcset="https://codegnan.in/webinars/wp-content/uploads/2020/07/004.png 396w, https://codegnan.in/webinars/wp-content/uploads/2020/07/004-300x295.png 300w" sizes="(max-width: 396px) 100vw, 396px" /></noscript></div>
+						<div class="et_pb_slide_description">
+							<div class="et_pb_slide_content"><p style="text-align: left; font-size: 36px; opacity: 0.2; margin-bottom: -60px; margin-left: -10px;"><san style="text-align: center;"><i class="fas fa-quote-right"></i></san></p>
+<p><em>Codegnan is a wonderful place if you wanna start your career in computers and don&#8217;t know where to start, the faculty is really well experienced and good care is been taken on everyone.</em></p>
+<p><strong>Chandha Pothumarth</strong><br /> <strong> Student, Sastra University</strong></p></div>
+							
+						</div> <!-- .et_pb_slide_description -->
+					</div>
+				</div> <!-- .et_pb_container -->
+				
+			</div> <!-- .et_pb_slide -->
+			
+				</div> <!-- .et_pb_slides -->
+				
+			</div> <!-- .et_pb_slider -->
+			
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_3 et_pb_with_background et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_5">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_7  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_5  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p style="text-align: center;"><span>Codegnan IT Solutions OPC. PVT. LTD. &#8211; Copyright 2020 &#8211; All rights reserved | </span><a href="https://codegnan.com/terms-and-conditions" class="terms">Terms &amp; Conditions</a></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section -->		</div><!-- .et_builder_inner_content -->
+	</div><!-- .et-l -->
+	
+			
+		</div><!-- #et-boc -->
+							</div> <!-- .entry-content -->
+
+				
+				</article> <!-- .et_pb_post -->
+
+			
+
+</div> <!-- #main-content -->
+
+
+			<footer id="main-footer">
+				
+<div class="container">
+    <div id="footer-widgets" class="clearfix">
+		<div class="footer-widget"><div id="archives-2" class="fwidget et_pb_widget widget_archive"><h4 class="title">Archives</h4>
+			<ul>
+					<li><a href='https://codegnan.in/webinars/2020/06/'>June 2020</a></li>
+			</ul>
+
+			</div> <!-- end .fwidget --><div id="categories-2" class="fwidget et_pb_widget widget_categories"><h4 class="title">Categories</h4>
+			<ul>
+					<li class="cat-item cat-item-1"><a href="https://codegnan.in/webinars/category/uncategorized/">Uncategorized</a>
+</li>
+			</ul>
+
+			</div> <!-- end .fwidget --><div id="meta-2" class="fwidget et_pb_widget widget_meta"><h4 class="title">Meta</h4>
+		<ul>
+						<li><a href="https://codegnan.in/webinars/wp-login.php">Log in</a></li>
+			<li><a href="https://codegnan.in/webinars/feed/">Entries feed</a></li>
+			<li><a href="https://codegnan.in/webinars/comments/feed/">Comments feed</a></li>
+
+			<li><a href="https://wordpress.org/">WordPress.org</a></li>
+		</ul>
+
+		</div> <!-- end .fwidget --></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget -->    </div> <!-- #footer-widgets -->
+</div>    <!-- .container -->
+
+		
+				<div id="footer-bottom">
+					<div class="container clearfix">
+									</div>	<!-- .container -->
+				</div>
+			</footer> <!-- #main-footer -->
+		</div> <!-- #et-main-area -->
+
+
+	</div> <!-- #page-container -->
+
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBPLVJQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script src="https://kit.fontawesome.com/a01bd6bffe.js" crossorigin="anonymous" defer></script><script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/codegnan.in\/webinars\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.2.2' id='contact-form-7-js' defer></script>
+<script type='text/javascript' id='divi-custom-script-js-extra'>
+/* <![CDATA[ */
+var DIVI = {"item_count":"%d Item","items_count":"%d Items"};
+var et_shortcodes_strings = {"previous":"Previous","next":"Next"};
+var et_pb_custom = {"ajaxurl":"https:\/\/codegnan.in\/webinars\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/codegnan.in\/webinars\/wp-content\/themes\/Divi\/images","builder_images_uri":"https:\/\/codegnan.in\/webinars\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"77e8266cae","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"1a77b74f92","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","wrong_checkbox":"Checkbox","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","ab_tests":[],"is_ab_testing_active":"","page_id":"223528","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"yes","is_shortcode_tracking":"","tinymce_uri":""}; var et_builder_utils_params = {"condition":{"diviTheme":true,"extraTheme":false},"scrollLocations":["app","top"],"builderScrollLocations":{"desktop":"app","tablet":"app","phone":"app"},"onloadScrollLocation":"app","builderType":"fe"}; var et_frontend_scripts = {"builderCssContainerPrefix":"#et-boc","builderCssLayoutPrefix":"#et-boc .et-l"};
+var et_pb_box_shadow_elements = [];
+var et_pb_motion_elements = {"desktop":[],"tablet":[],"phone":[]};
+var et_pb_sticky_elements = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-content/themes/Divi/js/custom.unified.js?ver=4.6.1' id='divi-custom-script-js' defer></script>
+<script type='text/javascript' src='https://codegnan.in/webinars/wp-content/themes/Divi/core/admin/js/common.js?ver=4.6.1' id='et-core-common-js' defer></script>
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){return}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){return}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://codegnan.in/webinars/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script><script>const wprRemoveCPCSS = () => { if( document.querySelector("link[data-rocket-async='style'][rel='preload']") ){ setTimeout(wprRemoveCPCSS, 200); }else{ $elem = document.getElementById( "rocket-critical-css" );if ( $elem ) {$elem.remove();} } }; if ( window.addEventListener ) { window.addEventListener( "load", wprRemoveCPCSS ); } else if ( window.attachEvent ) { window.attachEvent( "onload", wprRemoveCPCSS ); }</script><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans%3A300italic%2C400italic%2C600italic%2C700italic%2C800italic%2C400%2C300%2C600%2C700%2C800%7CNunito%20Sans%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CNunito%3A200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=latin%2Clatin-ext&#038;display=swap" /><link rel='stylesheet' id='wp-block-library-css'  href='https://codegnan.in/webinars/wp-includes/css/dist/block-library/style.min.css?ver=5.5.1' type='text/css' media='all' /><link rel='stylesheet' id='contact-form-7-css'  href='https://codegnan.in/webinars/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.2.2' type='text/css' media='all' /><link rel='stylesheet' id='divi-style-css'  href='https://codegnan.in/webinars/wp-content/themes/divi-child/style.css?ver=4.6.1' type='text/css' media='all' /><link rel='stylesheet' id='dashicons-css'  href='https://codegnan.in/webinars/wp-includes/css/dashicons.min.css?ver=5.5.1' type='text/css' media='all' /><link rel="stylesheet" id="et-core-unified-223528-cached-inline-styles" href="https://codegnan.in/webinars/wp-content/et-cache/223528/et-core-unified-223528-16001151219601.min.css" onerror="et_core_page_resource_fallback(this, true)" onload="et_core_page_resource_fallback(this)" /></noscript></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1600753972 -->

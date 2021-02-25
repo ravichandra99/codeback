@@ -1,0 +1,217 @@
+/*
+ Theme Name:     Codegnan Theme
+ Theme URI:      https://codegnan.com/
+ Description:    Codegnan Theme
+ Author:         Bhagath
+ Author URI:     https://codegnan.com
+ Template:       Divi
+ Version:        1.0.0
+*/
+ 
+@import url("../Divi/style.css");
+ 
+/* Theme customization starts here
+------------------------------------------------------- 
+*/
+/* Hiding bottom bar*/
+#footer-bottom{
+	display: none;
+}
+#main-footer{
+	display: none;
+}
+
+/*Menu buttons customisation*/
+.menu-enroll-btn{
+/* 	background-image: linear-gradient(45deg, #005bea, #00c6fb); */
+	background-color: #fd6d02;
+	color: white;
+	padding: 10px;
+	font-size: 18px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	border: 2px solid white;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+.menu-whatsapp-btn{
+	background-image: linear-gradient(45deg, #76b852, #21995E);
+	color: white;
+	padding: 10px;
+	font-size: 18px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	border: 2px solid white;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+.menu-whatsapp-icon{
+	font-size: 22px !important;
+	padding-right: 5px;
+	margin-right: 5px;
+	border-right: 2px solid white;
+}
+
+/* Mobile menu customisation */
+@media only screen and (max-width:1325px) and (min-width:360px) {
+	/*Blocking hamburger menu to show up in mobile*/
+  #top-menu, .fullwidth-menu, nav#top-menu-nav, nav.fullwidth-menu-nav {
+    display:block!important;
+  }
+  #et_mobile_nav_menu, .et_mobile_nav_menu { 
+    display: none!important;
+  }
+}
+
+/*Removing whatsapp number in mobile*/
+@media(max-width: 767px){
+	.wup-num{
+		display: none !important;
+	}
+	.menu-whatsapp-icon{
+		border-right: 0px !important;
+		padding-right: 0px !important;
+		margin-right: 0px !important;
+	}
+	.menu-whatsapp-btn{
+		padding: 8px 12px 8px 12px !important;
+		border-radius: 50px !important;
+	}
+	.xtra-txt-menu{
+		display: none!important;
+	}
+	#et-top-navigation{
+		padding-left: 120px !important;
+	}
+	#top-menu li {
+    	padding-right: 10px !important;
+	}
+	.et_menu_container{
+		width: 90% !important;
+	}
+	.menu-enroll-btn{
+		padding: 8px 12px 8px 12px !important;
+	}
+}
+
+.et_pb_slide_image {
+    display: block!important;
+}
+
+/* Timer custom css starts here  */
+p.value{
+	background: white;
+	padding: 4px;
+	border-radius: 4px;
+}
+/* Timer custom css ends here  */
+
+/* Fixed header css starts here  */
+.et-fixed-header#main-header {
+	box-shadow: 0 3px 0 rgba(102, 102, 102, 0.1) !important;
+} 
+/* Fixed header css ends here  */
+
+/* Secondary menu styling css starts here */
+/* Showing in Mobile  */
+@media (max-width: 980px) {
+	#top-header, div#et-secondary-menu, ul#et-secondary-nav {
+		display: block !important; 
+	}
+	#top-header .container {
+		padding-top: 2px !important;
+	}
+		.et_fixed_nav.et_secondary_nav_only_menu.admin-bar #main-header{
+    top: 110px!important;
+	}
+	div#top-header {
+    padding-top: 10px;
+	position:fixed !important;
+	box-shadow: 0em 0.1em 0.1em rgba(0,0,0,0.4) !important;
+	}
+/* 	header#main-header {
+    margin-top: 70px;
+	} */
+}
+
+#et-secondary-menu {
+    float: none;
+    text-align: center !important;
+}
+.secondary-menu-text{
+	padding: 0px 0px 0px 0px !important;
+	font-size:15px !important;
+	position: relative;
+	bottom: 4px;
+	font-family: 'Nunito Sans', sans-serif;
+}
+#top-header{
+	background-image: linear-gradient(270deg, #005bea, #00c6fb) !important;
+}
+
+
+/* Contact Form 7 Styling  */
+/* Contact Form 7 Styles
+---------------------------------*/
+ div.wpcf7 .wpcf7-form-control {
+    max-width: 95%;
+}
+
+.wpcf7-form label{
+	color: white !important;
+}
+.wpcf7-form input{
+	padding: 10px;
+	border-radius: 8px;
+}
+input.wpcf7-form-control.wpcf7-submit{
+	font-size: 18px;
+	border-color: #FD6D02 !important;
+	background:#FD6D02;
+	color: white;
+	border-radius: 50px;
+	cursor: pointer;
+}
+.wpcf7-response-output {
+    border-color: white;
+	color: white;
+}
+
+/* Webinar Form Styling  */
+.webinar-form{
+	font-family: 'Roboto', 'Sans-serif';
+}
+
+
+.webinar-form input{
+	width: 80%;
+	padding: 7px;
+	border: 1.5px solid black;
+	border-radius: 8px;
+	margin: 8px;
+}
+.webinar-form input:focus{
+	border: 2px solid #313F99;
+}
+.webinar-form #submit{
+	background-color: #EE1C3B;
+	cursor: pointer;
+	color: white;
+	padding: 10px !important;
+	margin-top: -80px !important;
+	font-size: 18px;
+}
+
+.webinar-success-alert{
+	font-family : 'Nunito Sans', sans-serif;
+	text-align: center !important;
+}
+.webinar-success-alert h3{
+	font-weight: 600;
+}
+.webinar-success-alert p{
+	font-size: 18px;
+	color: black;
+}
